@@ -14,8 +14,10 @@ The full search URL is built as follows:
 	&showme_rooms=Y
 	&showme_1beds=Y
 	&showme_buddyup_properties=Y
-	&min_rent=0&max_rent=123
-	&per=pw&no_of_rooms=
+	&min_rent=0
+	&max_rent=123
+	&per=pw
+	&no_of_rooms=
 	&min_term=0
 	&max_term=0
 	&available_search=N

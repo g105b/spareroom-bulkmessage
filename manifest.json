@@ -1,0 +1,15 @@
+{
+  "name": "SpareRoom bulk message sender",
+  "description": "Fast track to breaking term 3.4.h",
+  "version": "0.1",
+  "manifest_version": 2,
+  "app": {
+    "background": {
+      "scripts": ["background.js"]
+    }
+  },
+  "icons": { "16": "logo-32.png", "128": "logo-128.png" },
+  "permissions": [
+    "webview"
+  ]
+}

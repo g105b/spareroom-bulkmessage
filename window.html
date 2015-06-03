@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+	<header>
+		<h1>SpareRoom bulk message sender</h1>
+	</header>
+
+	<form>
+		<label>
+			<span>Search type</span>
+			<select id="type">
+				<option value="wanted">Wanted</option>
+				<option value="offered">Offered</option>
+				<option value="buddyup">Buddy ups</option>
+			</select>
+		</label>
+		<label>
+			<span>Message</span>
+			<textarea id="message" placeholder="Your message" required></textarea>
+		</label>
+		<div class="columns">
+			<label>
+				<span>Location</span>
+				<input id="location" required />
+			</label>
+			<label>
+				<span>Miles from location</span>
+				<input id="miles" type="number" value="0" />
+			</label>
+			<label>
+				<span>Minimum cost per month</span>
+				<input id="mincost" type="number" value="0" />
+			</label>
+			<label>
+				<span>Maximum cost per month</span>
+				<input id="maxcost" type="number" required />
+			</label>
+		</div>
+
+		<div class="centre">
+			<button id="sendButton">
+				Send
+			</button>
+		</div>
+	</form>
+
+	<webview id="web" src="http://www.spareroom.co.uk"></webview>
+</body>
+</html>
