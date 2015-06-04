@@ -5,11 +5,13 @@
 	<link rel="stylesheet" href="/style.css" />
 </head>
 <body>
+
+<section>
 	<header>
 		<h1>SpareRoom bulk message sender</h1>
 	</header>
 
-	<form>
+	<form id="detail-form">
 		<label>
 			<span>Search type</span>
 			<select id="type">
@@ -20,7 +22,8 @@
 		</label>
 		<label>
 			<span>Message</span>
-			<textarea id="message" placeholder="Your message" required></textarea>
+			<textarea id="message" placeholder="Your message" 
+				required></textarea>
 		</label>
 		<div class="columns">
 			<label>
@@ -43,11 +46,22 @@
 
 		<div class="centre">
 			<button id="sendButton">
-				Send
+				Begin
 			</button>
 		</div>
 	</form>
+</section>
 
-	<webview id="web" src="http://www.spareroom.co.uk"></webview>
+<section>
+	<header>
+		<h1>Please log in</h1>
+	</header>
+
+	<p>
+		Please authenticate to the site in the window that pops up. Once authenticated the search will begin automatically.
+	</p>
+</section>
+
+<script src="/script.js"></script>
 </body>
 </html>

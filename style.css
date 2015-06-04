@@ -14,6 +14,13 @@ body>header>h1 {
 	text-align: center;
 }
 
+body>section {
+	display: none;
+}
+body>section.on {
+	display: block;
+}
+
 form {
 
 }
@@ -59,5 +66,8 @@ button {
 }
 
 webview {
-	display: none;
+	position: absolute;
+	top: 3rem;
+	width: 100%;
+	height: calc(100% - 3rem);
 }
