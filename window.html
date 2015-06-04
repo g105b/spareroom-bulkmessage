@@ -57,9 +57,49 @@
 		<h1>Please log in</h1>
 	</header>
 
+	<form>
+		<label>
+			<span>Email address</span>
+			<input type="email" name="email" required />
+		</label>
+		<label>
+			<span>Password</span>
+			<input type="password" name="password" required />
+		</label>
+
+		<div class="centre">
+			<button id="authButton">
+				Log in
+			</button>
+		</div>
+	</form>
+</section>
+
+<section>
+	<header>
+		<h1>Confirm</h1>
+	</header>
+
 	<p>
-		Please authenticate to the site in the window that pops up. Once authenticated the search will begin automatically.
+		There are <span id="matchesTotal">0</span> people matching your search.
 	</p>
+	<p>
+		There are <span id="matchesNew">0</span> new people to contact.
+	</p>
+
+	<div class="centre">
+		<button id="sendButton">
+			Send messages!
+		</button>
+	</div>
+
+	<div>
+		<progress max=10 value=0>0%</progress>
+	</div>
+
+	<div>
+		<textarea id="output" readonly></textarea>
+	</div>
 </section>
 
 <script src="/script.js"></script>
