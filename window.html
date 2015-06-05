@@ -14,7 +14,7 @@
 	<form id="detail-form">
 		<label>
 			<span>Search type</span>
-			<select id="type">
+			<select name="type">
 				<option value="wanted">Wanted</option>
 				<option value="offered">Offered</option>
 				<option value="buddyup">Buddy ups</option>
@@ -22,25 +22,25 @@
 		</label>
 		<label>
 			<span>Message</span>
-			<textarea id="message" placeholder="Your message" 
+			<textarea name="message" placeholder="Your message"
 				required></textarea>
 		</label>
 		<div class="columns">
 			<label>
 				<span>Location</span>
-				<input id="location" required />
+				<input name="location" required />
 			</label>
 			<label>
 				<span>Miles from location</span>
-				<input id="miles" type="number" value="0" />
+				<input name="miles" type="number" value="0" />
 			</label>
 			<label>
 				<span>Minimum cost per month</span>
-				<input id="mincost" type="number" value="0" />
+				<input name="mincost" type="number" value="0" />
 			</label>
 			<label>
 				<span>Maximum cost per month</span>
-				<input id="maxcost" type="number" required />
+				<input name="maxcost" type="number" required />
 			</label>
 		</div>
 
@@ -81,15 +81,15 @@
 	</header>
 
 	<p>
-		There are <span id="matchesTotal">0</span> people matching your search.
+		The automated script is now running. Output will be shown below.
 	</p>
 	<p>
-		There are <span id="matchesNew">0</span> new people to contact.
+		Progress bar will fill up when each user is checked or message is sent.
 	</p>
 
 	<div class="centre">
 		<button id="sendButton">
-			Send messages!
+			Sending messages!
 		</button>
 	</div>
 
