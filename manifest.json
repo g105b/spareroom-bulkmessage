@@ -13,6 +13,9 @@
     "webview",
     "storage",
     "http://*/",
-    "https://*/"
+    "https://*/",
+    "http://www.spareroom.co.uk",
+    "http://www.spareroom.co.uk/",
+    "http://www.spareroom.co.uk/*"
   ]
 }

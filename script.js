@@ -343,6 +343,10 @@ function typeMessage() {
 		msg = searchForm["message"].value,
 	$$;
 
+	while(msg.indexOf(String.fromCharCode(10)) >= 0) {
+		msg = msg.replace(String.fromCharCode(10), "\\n");
+	}
+
 	w.executeScript({
 		code: ''
 		// + 'document.documentElement.innerHTML;'
