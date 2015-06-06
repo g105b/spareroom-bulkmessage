@@ -1,5 +1,6 @@
 "use strict";
 var
+	MAXUSERS = 5,
 	x,
 	searchForm = document.forms[0],
 	authForm = document.forms[1],
@@ -281,8 +282,9 @@ function nextSearchPage() {
 			w.removeEventListener("loadstop", getFlatshareIDs_before);
 			sendMessages();
 		}
-		else if(flatshareIdArray.length > 5) {
+		else if(flatshareIdArray.length > MAXUSERS) {
 			output.value += "\n\nFound max users, stopping search.\n";
+			progress.setAttribute("max", flatshareIdArray.length * 2);
 			progress.value = progress.getAttribute("max") / 2;
 			output.value += "Sending messages...\n\n";
 			w.removeEventListener("loadstop", getFlatshareIDs_before);
