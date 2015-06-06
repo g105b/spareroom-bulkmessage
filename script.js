@@ -27,7 +27,7 @@ chrome.storage.local.get("formData", function(obj) {
 		formData = obj.formData,
 	$$;
 
-	if(!formData["message"]) {
+	if(!formData || !formData["message"]) {
 		return;
 	}
 	searchForm["message"].value = formData.message;
@@ -310,7 +310,7 @@ function sendMessages() {
 	if(!nextID) {
 		output.value += "\n\nSent all messages!\n\n";
 		progress.value = progress.getAttribute("max");
-		document.getElementById("sendButton").textContent = "DONE!";
+		document.getElementById("outputButton").textContent = "DONE!";
 		return;
 	}
 
@@ -345,13 +345,13 @@ function typeMessage() {
 
 	w.executeScript({
 		code: ''
-		//+ 'var el = document.querySelector("#messagefieldinput textarea")\n'
-		//+ 'el.value = "'
-		//+ msg
-		//+ '";\n'
-		+ 'document.documentElement.innerHTML;'
-		//+ 'el.tagName;'
-		//+ 'document.querySelector("#messagefieldinput textarea").value;\n'
+		// + 'document.documentElement.innerHTML;'
+		+ 'var el = document.querySelector("#messagefieldinput textarea");\n'
+		+ 'el.value = "'
+		+ msg
+		+ '";\n'
+		// + 'el.tagName;'
+		+ 'document.querySelector("#messagefieldinput textarea").value;\n'
 	}, function(r) {
 		console.log("typeMessage output", r[0]);
 		output.value += "Sending message...\n";
