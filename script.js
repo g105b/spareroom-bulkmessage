@@ -1,6 +1,6 @@
 "use strict";
 var
-	MAXUSERS = 5,
+	MAXUSERS = 50,
 	x,
 	searchForm = document.forms[0],
 	authForm = document.forms[1],
