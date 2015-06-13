@@ -1,6 +1,6 @@
 "use strict";
 var
-	MAXUSERS = 50,
+	MAXUSERS = 100,
 	x,
 	searchForm = document.forms[0],
 	filterForm = document.forms[1],
