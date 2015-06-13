@@ -267,7 +267,9 @@ function getFlatshareIDs() {
 		+ '[].forEach.call(document.querySelectorAll("li.listing_result"),\n'
 		+ 'function(el) {\n'
 		+ '  if(!el.querySelector(".listing_contactable")\n'
-		+ '  || el.querySelector(".listing_contactable").textContent.trim() != "Free to Contact" ) {\n'
+		// This line filters the early bird access, for non-paid accounts.
+		// + '  || el.querySelector(".listing_contactable").textContent.trim() != "Free to Contact" ) {\n'
+		+ '  ) {\n'
 		+ '    var li = el;\n'
 		+ '    var li_href = li.getAttribute("data-href");\n'
 		+ '    var id = li_href.substr(li_href.indexOf("flatshare_id="));\n'
@@ -304,6 +306,9 @@ function nextSearchPage() {
 	+'if(numContacted>=10) {\n'
 	+'  "NO NEW USERS";\n'
 	+'}\n'
+	+'else if(!document.querySelector("ul.navnext a")) {\n'
+	+'  "NO NEW PAGE";\n'
+	+'}\n'
 	+'else {\n'
 	+'  document.querySelector("ul.navnext a").click();\n'
 	+'}\n'
@@ -312,6 +317,12 @@ function nextSearchPage() {
 		if(r[0] == "NO NEW USERS") {
 			output.value += "\n\nAll following users already contacted.\n";
 			progress.value = progress.getAttribute("max") / 2;
+			output.value += "Sending messages...\n\n";
+			w.removeEventListener("loadstop", getFlatshareIDs_before);
+			sendMessages();
+		}
+		else if(r[0] == "NO NEW PAGE") {
+			output.value += "End of search results.\n";
 			output.value += "Sending messages...\n\n";
 			w.removeEventListener("loadstop", getFlatshareIDs_before);
 			sendMessages();
