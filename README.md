@@ -79,19 +79,20 @@ Extra options:
 
 ```
 	&rooms_for=couples			#couples/females/males
+	&genderfilter=none			#none/mixed/males/females
 	&room_types=single			#single/double/[empty value]
 	&keyword=					#[plaintext, url encoded]
 	&ensuite=Y
 	&smoking=N
 	&parking=Y
-	&pets_req=Y
+	
 	&photoadsonly=Y
 	&short_lets_considered=Y
 	&dss=Y						#DSS OK
 	&disabled_access=Y
 	&vegetarians=Y
 	&no_of_rooms=				#1/2/3 (3 = 3+)
-	&genderfilter=none			#none/mixed/males/females
+	&pets_req=Y
 ```
 
 http://www.spareroom.co.uk/flatshare/search.pl?flatshare_type={offered|wanted|buddyup}&location_type=area&search={searchterm}&miles_from_max={miles}&showme_rooms=Y&showme_1beds=Y&showme_buddyup_properties=Y&min_rent={mincost}&max_rent={maxcost}&per=pcm&no_of_rooms=&min_term=0&max_term=0&available_search=N&day_avail=&mon_avail=&year_avail=&min_age_req=&max_age_req=&min_beds=&max_beds=&keyword=&searchtype=advanced%20&editing=&mode=&nmsq_mode=&action=search&templateoveride=&show_results=&submit=

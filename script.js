@@ -3,7 +3,8 @@ var
 	MAXUSERS = 50,
 	x,
 	searchForm = document.forms[0],
-	authForm = document.forms[1],
+	filterForm = document.forms[1],
+	authForm = document.forms[2],
 	w = document.createElement("webview"),
 	output = document.querySelector("#output"),
 	progress = document.querySelector("progress"),
@@ -49,6 +50,11 @@ w.setAttribute("src", "http://www.spareroom.co.uk");
 nextSection();
 
 searchForm.onsubmit = function(e) {
+	e.preventDefault();
+	nextSection();
+}
+
+filterForm.onsubmit = function(e) {
 	e.preventDefault();
 	nextSection();
 }
@@ -160,6 +166,15 @@ function startSearch() {
 			+"&available_search=N&day_avail=&mon_avail=&year_avail="
 			+"&min_age_req=&max_age_req=&min_beds=&max_beds=&keyword="
 			+"&searchtype=advanced&editing=&mode=&nmsq_mode="
+
+			+"&rooms_for={ROOMS_FOR}"
+			+"&genderfilter={GENDERFILTER}"
+			+"&room_types={ROOM_TYPES}"
+			+"&keyword={KEYWORD}"
+			+"&ensuite={ENSUITE}"
+			+"&smoking={SMOKING}"
+			+"&parking={PARKING}"
+
 			+"&action=search&templateoveride=&show_results=&submit=",
 	$$;
 
@@ -168,6 +183,21 @@ function startSearch() {
 	searchUri = searchUri.replace("{MILES}", searchForm["miles"].value);
 	searchUri = searchUri.replace("{MINCOST}", searchForm["mincost"].value);
 	searchUri = searchUri.replace("{MAXCOST}", searchForm["maxcost"].value);
+
+	searchUri = searchUri.replace("{ROOMS_FOR}",
+		filterForm["rooms_for"].value);
+	searchUri = searchUri.replace("{GENDERFILTER}", 
+		filterForm["genderfilter"].value);
+	searchUri = searchUri.replace("{ROOM_TYPES}", 
+		filterForm["room_types"].value);
+	searchUri = searchUri.replace("{KEYWORD}", 
+		encodeURI(filterForm["keyword"].value));
+	searchUri = searchUri.replace("{ENSUITE}", 
+		filterForm["ensuite"].value);
+	searchUri = searchUri.replace("{SMOKING}", 
+		filterForm["smoking"].value);
+	searchUri = searchUri.replace("{PARKING}", 
+		filterForm["parking"].value);
 
 	output.value += "Searching using this URI:\n" + searchUri + "\n\n\n\n";
 
@@ -190,6 +220,10 @@ function startSearch_cb() {
 		}
 
 		numResults = r[0].match(/([0-9]+)<\/strong> results/);
+		if(!numResults) {
+			output.value += "No results for your search. Ending.\n\n";
+			return;
+		}
 		output.value += "Search complete. Found "
 			+ numResults[1]
 			+ " results!\n";
