@@ -46,7 +46,84 @@
 
 		<div class="centre">
 			<button id="sendButton">
-				Begin
+				Next
+			</button>
+		</div>
+	</form>
+</section>
+
+<section>
+	<header>
+		<h1>Search filters</h1>
+	</header>
+	<p>
+		All of these fields are optional.
+	</p>
+
+	<form id="filter-form">
+		<div class="columns">
+			<label>
+				<span>Rooms for</span>
+				<select name="rooms_for">
+					<option></option>
+					<option value="couples">Couples only</option>
+					<option value="males">Men only</option>
+					<option value="females">Women only</option>
+				</select>
+			</label>
+
+			<label>
+				<span>Gender filter</span>
+				<select name="genderfilter">
+					<option value="none">No filter</option>
+					<option value="males">Men only</option>
+					<option value="females">Women only</option>
+					<option value="mixed">Mixed</option>
+				</select>
+			</label>
+
+			<label>
+				<span>Room type</span>
+				<select name="room_types">
+					<option></option>
+					<option value="single">Single</option>
+					<option value="double">Double</option>
+				</select>
+			</label>
+			
+			<label>
+				<span>Keywords</span>
+				<input name="keyword" />
+			</label>
+		</div>
+
+
+		<div>
+			<label>
+				<input type="checkbox" value="Y" name="ensuite" />
+				<span>En suite</span>
+			</label>
+
+			<label>
+				<input type="checkbox" value="Y" name="parking" />
+				<span>Parking</span>
+			</label>
+
+			<label>
+				<input type="radio" value="N" name="smoking" />
+				<span>No smoking</span>
+			</label>
+			<label>
+				<input type="radio" value="Y" name="smoking" />
+				<span>Smoking allowed</span>
+			</label>
+		</div>
+
+
+
+		<div class="centre">
+			<button id="sendButton">
+				Next
 			</button>
 		</div>
 	</form>
