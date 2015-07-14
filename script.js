@@ -288,8 +288,8 @@ function getFlatshareIDs() {
 		+ '  if(!el.querySelector(".listing_contactable")\n'
 		// This line filters the early bird access, for non-paid accounts.
 		// Toggle the two following line comments to switch filters.
-		+ '  || el.querySelector(".listing_contactable").textContent.trim() != "Free to Contact" ) {\n'
-		// + '  ) {\n'
+		// + '  || el.querySelector(".listing_contactable").textContent.trim() != "Free to Contact" ) {\n'
+		+ '  ) {\n'
 		+ '    var li = el;\n'
 		+ '    var li_href = li.getAttribute("data-href");\n'
 		+ '    var id = li_href.substr(li_href.indexOf("flatshare_id="));\n'
