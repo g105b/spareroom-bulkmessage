@@ -1,6 +1,6 @@
 "use strict";
 var
-	MAXUSERS = 100,
+	MAXUSERS = 50,
 	x,
 	searchForm = document.forms[0],
 	filterForm = document.forms[1],
@@ -230,7 +230,7 @@ function startSearch_cb() {
 
 		w.removeEventListener("loadstop", startSearch_cb);
 
-		progress.setAttribute("max", numResults[1] * 2);
+		progress.setAttribute("max", MAXUSERS * 2);
 		setTimeout(getFlatshareIDs, 1000);
 	});
 }
@@ -268,8 +268,9 @@ function getFlatshareIDs() {
 		+ 'function(el) {\n'
 		+ '  if(!el.querySelector(".listing_contactable")\n'
 		// This line filters the early bird access, for non-paid accounts.
-		// + '  || el.querySelector(".listing_contactable").textContent.trim() != "Free to Contact" ) {\n'
-		+ '  ) {\n'
+		// Toggle the two following line comments to switch filters.
+		+ '  || el.querySelector(".listing_contactable").textContent.trim() != "Free to Contact" ) {\n'
+		// + '  ) {\n'
 		+ '    var li = el;\n'
 		+ '    var li_href = li.getAttribute("data-href");\n'
 		+ '    var id = li_href.substr(li_href.indexOf("flatshare_id="));\n'
@@ -286,7 +287,7 @@ function getFlatshareIDs() {
 	}, function(r) {
 		flatshareIdArray = flatshareIdArray.concat(r[0]);
 		output.value += r[0].length + " new users found on page " + page + "\n";
-		progress.value += 10;
+		progress.value += r[0].length;
 		setTimeout(nextSearchPage, 1000);
 	});
 }
@@ -305,6 +306,7 @@ function nextSearchPage() {
 
 	+'if(numContacted>=10) {\n'
 	+'  "NO NEW USERS";\n'
+	+'  document.querySelector("ul.navnext a").click();\n'
 	+'}\n'
 	+'else if(!document.querySelector("ul.navnext a")) {\n'
 	+'  "NO NEW PAGE";\n'
@@ -315,11 +317,14 @@ function nextSearchPage() {
 	},
 	function(r) {
 		if(r[0] == "NO NEW USERS") {
-			output.value += "\n\nAll following users already contacted.\n";
-			progress.value = progress.getAttribute("max") / 2;
-			output.value += "Sending messages...\n\n";
-			w.removeEventListener("loadstop", getFlatshareIDs_before);
-			sendMessages();
+			output.value += "\n\nAll users already contacted on this page.\n";
+			// progress.value = progress.getAttribute("max") / 2;
+			progress.value += 10;
+			// output.value += "Sending messages...\n\n";
+			// w.removeEventListener("loadstop", getFlatshareIDs_before);
+			// sendMessages();
+			page++;
+			output.value += "Moving to page " + page + "...(nnn)\n";
 		}
 		else if(r[0] == "NO NEW PAGE") {
 			output.value += "End of search results.\n";
@@ -327,8 +332,8 @@ function nextSearchPage() {
 			w.removeEventListener("loadstop", getFlatshareIDs_before);
 			sendMessages();
 		}
-		else if(flatshareIdArray.length > MAXUSERS) {
-			output.value += "\n\nFound max users, stopping search.\n";
+		else if(flatshareIdArray.length >= MAXUSERS) {
+			output.value += "\n\nFound enough users, stopping search.\n";
 			progress.setAttribute("max", flatshareIdArray.length * 2);
 			progress.value = progress.getAttribute("max") / 2;
 			output.value += "Sending messages...\n\n";
