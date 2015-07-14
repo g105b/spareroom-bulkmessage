@@ -167,7 +167,7 @@ function startSearch() {
 			+"&min_age_req=&max_age_req=&min_beds=&max_beds=&keyword="
 			+"&searchtype=advanced&editing=&mode=&nmsq_mode="
 
-			+"&rooms_for={ROOMS_FOR}"
+			+"&couples={COUPLES}"
 			+"&genderfilter={GENDERFILTER}"
 			+"&room_types={ROOM_TYPES}"
 			+"&keyword={KEYWORD}"
@@ -184,8 +184,8 @@ function startSearch() {
 	searchUri = searchUri.replace("{MINCOST}", searchForm["mincost"].value);
 	searchUri = searchUri.replace("{MAXCOST}", searchForm["maxcost"].value);
 
-	searchUri = searchUri.replace("{ROOMS_FOR}",
-		filterForm["rooms_for"].value);
+	searchUri = searchUri.replace("{COUPLES}",
+		filterForm["couples"].value);
 	searchUri = searchUri.replace("{GENDERFILTER}", 
 		filterForm["genderfilter"].value);
 	searchUri = searchUri.replace("{ROOM_TYPES}", 
