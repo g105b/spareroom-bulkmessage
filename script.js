@@ -163,19 +163,28 @@ function startSearch() {
 			+"&min_rent={MINCOST}"
 			+"&max_rent={MAXCOST}"
 			+"&per=pcm&no_of_rooms=&min_term=0&max_term=0"
-			+"&available_search=N&day_avail=&mon_avail=&year_avail="
+			+"&available_search=N"
+
+			+"&day_avail={DAY_AVAIL}"
+			+"&mon_avail={MON_AVAIL}"
+			+"&year_avail={YEAR_AVAIL}"
+
 			+"&min_age_req=&max_age_req=&min_beds=&max_beds=&keyword="
 			+"&searchtype=advanced&editing=&mode=&nmsq_mode="
 
 			+"&couples={COUPLES}"
 			+"&genderfilter={GENDERFILTER}"
 			+"&room_types={ROOM_TYPES}"
-			+"&keyword={KEYWORD}"
+			+"&keyword="
 			+"&ensuite={ENSUITE}"
 			+"&smoking={SMOKING}"
 			+"&parking={PARKING}"
 
 			+"&action=search&templateoveride=&show_results=&submit=",
+		dateAvail = filterForm["dateAvail"].value.split("-"),
+		DD = "",
+		MM = "",
+		YYYY = "",
 	$$;
 
 	searchUri = searchUri.replace("{SEARCHTYPE}", searchForm["type"].value);
@@ -184,14 +193,24 @@ function startSearch() {
 	searchUri = searchUri.replace("{MINCOST}", searchForm["mincost"].value);
 	searchUri = searchUri.replace("{MAXCOST}", searchForm["maxcost"].value);
 
+	if(dateAvail.length == 3) {
+		DD = dateAvail[2];
+		MM = dateAvail[1];
+		YYYY = dateAvail[0];
+	}
+
+	searchUri = searchUri.replace("{DAY_AVAIL}", DD);
+	searchUri = searchUri.replace("{MON_AVAIL}", MM);
+	searchUri = searchUri.replace("{YEAR_AVAIL}", YYYY);
+
 	searchUri = searchUri.replace("{COUPLES}",
 		filterForm["couples"].value);
 	searchUri = searchUri.replace("{GENDERFILTER}", 
 		filterForm["genderfilter"].value);
 	searchUri = searchUri.replace("{ROOM_TYPES}", 
 		filterForm["room_types"].value);
-	searchUri = searchUri.replace("{KEYWORD}", 
-		encodeURI(filterForm["keyword"].value));
+	// searchUri = searchUri.replace("{KEYWORD}", 
+		// encodeURI(filterForm["keyword"].value));
 	searchUri = searchUri.replace("{ENSUITE}", 
 		filterForm["ensuite"].value);
 	searchUri = searchUri.replace("{SMOKING}", 
