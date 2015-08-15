@@ -12,6 +12,7 @@ var
 	page = 1,
 	flatshareIdArray = [],
 	currentIdIndex = 0,
+	stopping = false,
 $$;
 
 w.addEventListener("dialog", function(e) {
@@ -64,6 +65,10 @@ authForm.onsubmit = function(e) {
 	saveData();
 	nextSection();
 	authenticate();
+}
+
+document.getElementById("startAgain").onclick = function(e) {
+	chrome.runtime.reload();
 }
 
 function saveData() {
@@ -186,6 +191,21 @@ function startSearch() {
 		MM = "",
 		YYYY = "",
 	$$;
+
+	document.getElementById("outputButton").addEventListener("click",
+	function() {
+		if(this.hasAttribute("data-skipped")) {
+			this.textContent = "STOPPING...";
+		}
+		else {
+			this.querySelector("p").textContent = "Skipped.";
+			this.querySelector("span").textContent
+				= "Press again to stop completely.";
+			this.setAttribute("data-skipped", true);
+		}
+		flatshareIdArray = [];
+		stopping = true;
+	});
 
 	searchUri = searchUri.replace("{SEARCHTYPE}", searchForm["type"].value);
 	searchUri = searchUri.replace("{LOCATION}", searchForm["location"].value);
@@ -351,7 +371,8 @@ function nextSearchPage() {
 			w.removeEventListener("loadstop", getFlatshareIDs_before);
 			sendMessages();
 		}
-		else if(flatshareIdArray.length >= MAXUSERS) {
+		else if(flatshareIdArray.length >= MAXUSERS || stopping) {
+			stopping = false;
 			output.value += "\n\nFound enough users, stopping search.\n";
 			progress.setAttribute("max", flatshareIdArray.length * 2);
 			progress.value = progress.getAttribute("max") / 2;
@@ -378,7 +399,8 @@ function sendMessages() {
 		,
 	$$;
 
-	if(!nextID) {
+	if(!nextID || stopping) {
+		stopping = false;
 		output.value += "\n\nSent all messages!\n\n";
 		progress.value = progress.getAttribute("max");
 		document.getElementById("outputButton").textContent = "DONE!";
