@@ -88,7 +88,7 @@ function authenticate() {
 	var
 		code = ''
 		+ 'if(!document.querySelector(".login_box_menu")) {\n'
-		+ 'document.querySelector(".login_box_button_text").click();\n'
+		+ 'document.querySelector(".login_box_prompt_text~.button-func").click();\n'
 		+ 'document.querySelector("#loginemail").click();\n'
 		+ 'document.querySelector("#loginemail").value = "{EMAIL}";\n'
 		+ 'document.querySelector("#loginpass").value = "{PASSWORD}";\n'
@@ -205,17 +205,17 @@ function startSearch() {
 
 	searchUri = searchUri.replace("{COUPLES}",
 		filterForm["couples"].value);
-	searchUri = searchUri.replace("{GENDERFILTER}", 
+	searchUri = searchUri.replace("{GENDERFILTER}",
 		filterForm["genderfilter"].value);
-	searchUri = searchUri.replace("{ROOM_TYPES}", 
+	searchUri = searchUri.replace("{ROOM_TYPES}",
 		filterForm["room_types"].value);
-	// searchUri = searchUri.replace("{KEYWORD}", 
+	// searchUri = searchUri.replace("{KEYWORD}",
 		// encodeURI(filterForm["keyword"].value));
-	searchUri = searchUri.replace("{ENSUITE}", 
+	searchUri = searchUri.replace("{ENSUITE}",
 		filterForm["ensuite"].value);
-	searchUri = searchUri.replace("{SMOKING}", 
+	searchUri = searchUri.replace("{SMOKING}",
 		filterForm["smoking"].value);
-	searchUri = searchUri.replace("{PARKING}", 
+	searchUri = searchUri.replace("{PARKING}",
 		filterForm["parking"].value);
 
 	output.value += "Searching using this URI:\n" + searchUri + "\n\n\n\n";
